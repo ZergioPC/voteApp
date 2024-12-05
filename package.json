@@ -1,9 +1,10 @@
 {
-  "name": "pj-votacion",
+  "name": "vote-ptgaitan-v0.1",
   "version": "1.0.0",
-  "description": "Software para configurar votaciones ",
-  "main": "index.js",
+  "description": "Software de Votacion para el concejo de puertogaitan ",
+  "main": "main.js",
   "scripts": {
+    "start":"electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sergio Palacios",
@@ -12,5 +13,8 @@
     "chart.js": "^4.4.7",
     "cors": "^2.8.5",
     "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1"
   }
 }

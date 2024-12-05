@@ -14,8 +14,11 @@
         <input id="pass" type="password" placeholder="contraseña">
         <button id="concejal">Concejal</button>
         <button id="secretaria">Secretaria</button>
+        <p id="showip">pp</p>
     </article>
     <script>
+        const os = require('os');
+
         sessionStorage.removeItem('name');
 
         const btnSecretaria = document.getElementById("secretaria");
@@ -23,16 +26,14 @@
 
         const user = document.getElementById('user');
         const pass = document.getElementById('pass');
-        
-        function ipLast2num(ipdata) {
-            const port = ipdata.toString();
-            return port.slice(-2);
-        }
 
-        fetch('/getLocalIP')
+        const showIp = document.getElementById("showip");
+
+        fetch(`/getLocalIP`)
             .then(response => response.json())
             .then(data => {
-               // alert(`La dirección es: ${data.ip}:${data.port}`);
+                showIp.innerText = `La dirección es: ${data.ip}:${data.port}`;
+                
             })
             .catch(error => {
                 console.error('Error al obtener la IP:', error);
