@@ -24,15 +24,15 @@
         const user = document.getElementById('user');
         const pass = document.getElementById('pass');
         
-        function ipLast2num(telefono) {
-            const telefonoStr = telefono.toString();
-            return telefonoStr.slice(-2);
+        function ipLast2num(ipdata) {
+            const port = ipdata.toString();
+            return port.slice(-2);
         }
 
         fetch('/getLocalIP')
             .then(response => response.json())
             .then(data => {
-                alert(`La dirección es: ${data.ip}:${data.port}`);
+               // alert(`La dirección es: ${data.ip}:${data.port}`);
             })
             .catch(error => {
                 console.error('Error al obtener la IP:', error);

@@ -1,4 +1,3 @@
-/*
 (function (){
     if(sessionStorage.getItem('name') != "admin"){
         const div = document.createElement("div");
@@ -10,7 +9,7 @@
     }else{
         alert('Admin');
     }
-})();*/
+})();
 
 let optionCount = 0;
 const optionArray = []

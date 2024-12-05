@@ -1,4 +1,4 @@
-/*(function (){
+(function (){
     if(sessionStorage.getItem('name') != "admin"){
         const div = document.createElement("div");
             div.classList.add("blocker");
@@ -9,7 +9,7 @@
     }else{
         sessionStorage.removeItem("name")
     }
-})();*/
+})();
 
 const btnGrap = document.getElementById('btnGrap');
 
@@ -24,6 +24,7 @@ const chkAnonim = document.getElementById("anominCheck");
 
 const pregunta = document.getElementById('pregunta');
 const fecha = document.getElementById("fecha");
+const simpleData = document.getElementById('finalData');
 
 const secLog = document.getElementById("historico");
 
@@ -50,7 +51,17 @@ function setTime(){
     const fecha = `Votación realizada el ${dia}-${mes}-${year} a las ${hours}:${minutes}`;
 
     return fecha;
-}
+};
+
+function conteoVotos(){
+    simpleData.replaceChildren();
+
+    for (let i = 0; i < preguntas[1].length; i++) {
+        const li = document.createElement('li');
+            li.innerHTML = `${preguntas[1][i]} <br>Recibe <b>${resultados[i]} votos.</b>`;
+        simpleData.appendChild(li);
+    }
+};
 
 /* GRAFICOS */
 function drawGraficoPolar(){
@@ -191,6 +202,7 @@ btnData.addEventListener("click",()=>{
             historial = data.logh;
             preguntas = data.quest;
             
+            conteoVotos();
             historialVotos();
             drawGraficoPolar();
             drawGraficoBarra();

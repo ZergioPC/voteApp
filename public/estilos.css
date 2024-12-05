@@ -3,21 +3,133 @@
     src: url(./assets/Figtree/Figtree-VariableFont_wght.ttf);
 }
 
+:root{
+    --color-0: #508D69;
+    --color-1: #FF8F8F;
+    --color-2: #9ADE7B;
+    --color-3: #EEF296;
+    --color-n: #000000;
+    --color-b: #ffffff;
+}
+
 *{
     font-family: "figtree";
+    font-size: 18px;
+    color: var(--color-n);
+}
+
+body{
+    background-color: var(--color-2);
+}
+
+h1{
+    font-size: 2em;
+    margin: 10px auto;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+}
+
+header button{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+textarea{
+    display: block;
+    resize: none;
+    margin: 10px auto;
+    width: 75vw;
+}
+
+section{
+    width: 90vw;
+    box-sizing: border-box;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: var(--color-3);
+    border-radius: 20px;
+    box-shadow: 7px 7px var(--color-0);
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    width: 400px;
+    margin: 25vh auto;
+    padding: 30px 50px;
+    background-color: var(--color-3);
+    border-radius: 20px;
+    box-shadow: 10px 10px var(--color-0);
 }
 
 canvas{
-    max-width: 810px;
+    display: block;
+    margin: 0 auto;
+    max-width: 90vh;
+    max-height: 90vh;
 }
 
-/* AUXILIARES */
+footer button{
+    display: block;
+    margin: 30px auto;
+    width: 300px;
+    font-size: 1.6em;
+    text-align: center;
+}
+
+/* SetupVotes */
+.divFex{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.divFex button{
+    display: block;
+    width: 200px;
+    background-color: var(--color-b);
+    font-size: 1.2em;
+}
+
+.divFex button:hover{
+    filter: invert();
+}
 
 .itemOption{
     display: flex;
     margin: 10px 0px;
     flex-direction: row;
+    gap: 10px;
 }
+
+.itemOption input{
+    display: block;
+    width: 70vw;
+}
+
+/* VOTACION */
+
+p#quest{
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+#vote button{
+    margin: 10px auto;
+    width: 100%;
+}
+
+/* AUXILIARES */
+
 .blocker{
     z-index: 999;
     display: block;
