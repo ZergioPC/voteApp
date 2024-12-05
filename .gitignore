@@ -24,5 +24,3 @@ node_modules/
 # Ignorar configuraciones personales de IDE
 .idea/
 *.iml
-
-public/assets/
