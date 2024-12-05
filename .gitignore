@@ -1,0 +1,28 @@
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar directorios de dependencias
+node_modules/
+/packages
+
+# Ignorar archivos compilados
+*.o
+*.pyc
+*.class
+
+# Ignorar directorios de salida de compilación
+/bin
+/out
+/target
+
+# Ignorar archivos generados en tiempo de ejecución
+*.log
+*.lock
+*.tmp
+
+# Ignorar configuraciones personales de IDE
+.idea/
+*.iml
+
+public/assets/

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/chartjs/chart.umd.js"></script>
+    <link rel="stylesheet" href="estilos.css">
+    <title>Software de Votaci&oacute;n</title>
+    <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon">
+</head>
+<body>
+    <style>
+        #finalPrint{
+            display: none;
+        }
+        @media print {
+            body{
+                visibility: hidden;
+            }
+            #finalPrint {
+                display:block;
+                visibility: visible;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    </style>
+    <header>
+        <button id="getData">Resultados</button>
+        <label><input type="checkbox" id="anominCheck">An&oacute;nimo</label>
+        <h1>Resultados</h1>
+        <p id="fecha"></p>
+    </header>
+    <main>
+        <h2 id="pregunta"></h2>
+        <section id="resultados">
+            <canvas id="grPolar" width="800" height="800"></canvas>
+            <canvas id="grBar" width="800" height="800"></canvas>
+            <div>
+                <button id="btnGrap">Barras</button>
+            </div>
+        </section>
+        <section id="historico"></section>
+    </main>
+    <footer>
+        <button id="btnImprimir">Imprimir</button>
+    </footer>
+    <div id="finalPrint">
+        <p id="printQuest"></p>
+        <ul id="printOpt"></ul>
+        <ul id="printLog"></ul>
+        <p id="printDate"></p>
+    </div>
+    <script src="./resultados.js"></script>
+</body>
+</html>

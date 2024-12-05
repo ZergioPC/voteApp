@@ -1,0 +1,20 @@
+{
+    "admin":{
+        "user":"admin",
+        "pass":"123abc"
+    },
+    "concejo":[{
+            "user":"con1",
+            "pass":"con@123",
+            "name":"Pepito Perez"
+        },{
+            "user":"c2",
+            "pass":"123",
+            "name":"Mario Mario"
+        },{
+            "user":"c3",
+            "pass":"321",
+            "name":"Luigi Mario"
+    }],
+    "port":"7677"
+}

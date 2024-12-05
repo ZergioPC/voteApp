@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Software de Votaci&oacute;n</title>
+    <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon">
+</head>
+<body>
+    <article>
+        <h1>Inicio de sesi&oacute;n</h1>
+        <input id="user" type="text" placeholder="usuario">
+        <input id="pass" type="password" placeholder="contraseña">
+        <button id="concejal">Concejal</button>
+        <button id="secretaria">Secretaria</button>
+    </article>
+    <script>
+        sessionStorage.removeItem('name');
+
+        const btnSecretaria = document.getElementById("secretaria");
+        const btnConcejal = document.getElementById("concejal");
+
+        const user = document.getElementById('user');
+        const pass = document.getElementById('pass');
+        
+        function ipLast2num(telefono) {
+            const telefonoStr = telefono.toString();
+            return telefonoStr.slice(-2);
+        }
+
+        fetch('/getLocalIP')
+            .then(response => response.json())
+            .then(data => {
+                alert(`La dirección es: ${data.ip}:${data.port}`);
+            })
+            .catch(error => {
+                console.error('Error al obtener la IP:', error);
+            });
+
+        function callPasswordCon(){
+            const username = user.value;
+            const passname = pass.value;
+
+            fetch(`/login/user`,{
+                method:"post",
+                headers:{
+                    "Content-Type":"application/json"   
+                },
+                body:JSON.stringify({
+                    user:username,
+                    pass:passname
+                })
+            }).then(function(res){
+                return res.json()
+            }).then(function(data){
+                sessionStorage.setItem("name",data['name'])
+                location.href = data['href']
+            })
+        };
+
+        function callPasswordSec(){
+            const username = user.value;
+            const passname = pass.value;
+
+            fetch(`/admin/admin`,{
+                method:"post",
+                headers:{
+                    "Content-Type":"application/json"   
+                },
+                body:JSON.stringify({
+                    user:username,
+                    pass:passname,
+                })
+            }).then(function(res){
+                return res.json()
+            }).then(function(data){
+                sessionStorage.setItem("name",data['name'])
+                location.href = data['href']
+            })
+        };
+
+        btnSecretaria.addEventListener("click",()=>{
+            callPasswordSec();
+        });
+
+        btnConcejal.addEventListener("click",()=>{
+            callPasswordCon();
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Software de Votaci&oacute;n</title>
+    <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon">
+</head>
+<body>
+    <style>
+        #finalPrint{
+            display: none;
+        }
+        @media print {
+            body{
+                visibility: hidden;
+            }
+            #finalPrint {
+                display:block;
+                visibility: visible;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    </style>
+    <header>
+        <h1>Software de Votaci&oacute;n</h1>
+        <h2><span id="user"></span></h2>
+    </header>
+    <main>
+        <section id="pregunta">
+            <textarea id="quest" cols="30" rows="10" placeholder="Dig&iacute;te la pregunta"></textarea>
+        </section>
+        <section>
+            <p>Cantidad de opciones</p>
+            <button id="btnMore">+</button>
+            <button id="btnLess">-</button>
+        </section>
+        <section id="options"></section>
+    </main>
+    <footer>
+        <button id="btnVotar">Enviar Votaci&oacute;n</button>
+    </footer>
+    <div id="finalPrint">
+        <p id="printQuest"></p>
+        <ol id="printOpt"></ol>
+        <p id="printDate"></p>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>

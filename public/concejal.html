@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Software de Votaci&oacute;n</title>
+    <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>VOTACI&Oacute;N EN CURSO</h1>
+        <button id="getQuests">Recibir Preguntas</button>
+    </header>
+    <main>
+        <section>
+            <p id="quest">pregunta</p>
+        </section>
+        <section id="vote"></section>
+    </main>
+    <footer>
+        <p id="select">selecci&oacute;n</p>
+        <button id="sendVote">Votar</button>
+    </footer>
+    <script>
+        alert(`Bienvenido concejal ${sessionStorage.getItem('name')}`)
+
+        let id = 0;
+        let vote = -1;
+
+        const username = "bob"
+        let getData = true
+
+        const labelQuest = document.getElementById("quest");
+        const labelBtns = document.getElementById("vote");
+        const labelSel = document.getElementById("select");
+
+        const select = document.getElementById("select");
+        const btn = document.getElementById("sendVote");
+        const btnData = document.getElementById("getQuests")
+
+        btnData.addEventListener("click",()=>{
+            if(getData){
+                fetch(`/getData`)
+                    .then(function(res){
+                        return res.json()
+                    }).then(function(datos){
+                        labelQuest.innerText = (datos["quest"]);
+                        datos["option"].forEach(a => {
+                            const btn = document.createElement("button");
+                            btn.innerText = a;
+                            btn.name = id;
+                            btn.addEventListener("click",()=>{
+                                vote = btn.name;
+                                select.innerText = `Su elección: ${a}`
+                            });
+                            id++;
+                            labelBtns.appendChild(btn);
+                            getData = false;
+                        });
+                    });
+            }else{
+                alert('Sí no vez las preguntas, recarga la página')
+            }
+        })
+
+        btn.addEventListener('click',()=>{
+            if(vote < 0){
+                alert("no ha votado")
+            }else{
+                fetch(`/vote/data`,{
+                    method:"post",
+                    headers:{
+                        "Content-Type":"application/json"   
+                    },
+                    body:JSON.stringify({
+                        user:sessionStorage.getItem('name'),
+                        voto:vote.toString()
+                    })
+                }).then(function(res){
+                    sessionStorage.removeItem('name');
+                    location.href = 'index.html'
+                });
+            }
+        })
+    </script>
+</body>
+</html>
