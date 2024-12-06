@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 
 require("./index.js");
@@ -21,6 +21,15 @@ app.on('ready', () => {
     mainWindow.loadURL(`http://localhost:${puerto}`);
     mainWindow.on('closed', () => {
         mainWindow = null;
+    });
+
+    ipcMain.on('show-alert', (event, message) => {
+        dialog.showMessageBox(mainWindow, {
+            type: 'info',
+            title: 'Información',
+            message: message,
+            buttons: ['OK'],
+        });
     });
 });
 

@@ -174,8 +174,3 @@ app.post("/login/:user",(req,res)=>{
     }
     res.end()
 });
-
-app.listen(puerto,()=>{
-    console.log(`Servidor en puerto: ${puerto}`)
-    console.log(getLocalIPAddress())
-}); 

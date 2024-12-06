@@ -1,3 +1,5 @@
+const { ipcRenderer } = require('electron');
+
 (function (){
     if(sessionStorage.getItem('name') != "admin"){
         const div = document.createElement("div");
@@ -7,7 +9,7 @@
         alert("No tiene permiso para ingresar");
         location.href = "index.html";
     }else{
-        alert('Admin');
+        ipcRenderer.send('show-alert', 'Admin');
     }
 })();
 
@@ -72,7 +74,7 @@ btnMore.addEventListener("click",()=>{
 
 btnLess.addEventListener("click",()=>{
     if(optionCount<=2){
-        alert("Deben existir almenos dos opciones")
+        ipcRenderer.send('show-alert', 'Deben existir almenos dos opciones');
     }else{
         secOptions.removeChild(optionArray[optionCount-1]);
         optionArray.pop()
@@ -82,7 +84,7 @@ btnLess.addEventListener("click",()=>{
 
 btnVotar.addEventListener("click",()=>{
     if(optionCount < 2){
-        alert("Se necesitan dos opciones minimo");
+        ipcRenderer.send('show-alert', 'Deben existir almenos dos opciones');
     }else{
         const nodeList = document.querySelectorAll(".itemOption");
         const questList = []
