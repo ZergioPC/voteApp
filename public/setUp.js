@@ -103,7 +103,6 @@ btnVotar.addEventListener("click",()=>{
                 options:questList
             })
         }).then(function(req,res){
-            print();
             location.href = "resultados.html";
         });
     }

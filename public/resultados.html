@@ -10,9 +10,14 @@
 </head>
 <body>
     <style>
+        h6{
+            margin: 20px auto;
+        }
+
         #finalPrint{
             display: none;
         }
+
         @media print {
             body{
                 visibility: hidden;
@@ -23,6 +28,30 @@
                 position: absolute;
                 left: 0;
                 top: 0;
+            }
+
+            #finalPrint header{
+                display: flex;
+                width: 8.5in;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 15px;
+                border: 2px solid;
+            }
+
+            #printCanvas{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 8.5in;
+            }
+
+            #finalPrint canvas{
+                width: 4in;
+            }
+
+            #finalPrint img{
+                max-height: 70px;
             }
         }
     </style>
@@ -45,12 +74,24 @@
         <section id="historico"></section>
     </main>
     <footer>
+        <textarea name="coments" id="txtAdd" placeholder="comentarios adicionales" cols="30" rows="4"></textarea>
         <button id="btnImprimir">Imprimir</button>
     </footer>
     <div id="finalPrint">
+        <header>
+            <img src="./assets/logoConcejo.png" alt="concejo_ptgaitan">
+            <h1>Reporte de Votaci&oacute;n</h1>
+            <img src="./assets/escudoPtGaitan.png" alt="escudo_ptgaitan">
+        </header>
+        <h6>Propuesta presentada</h6>
         <p id="printQuest"></p>
+        <h6>Resultados</h6>
+        <div id="printCanvas"></div>
         <ul id="printOpt"></ul>
+        <h6>Historico de votos</h6>
         <ul id="printLog"></ul>
+        <h6>Comentarios y Anotaciones</h6>
+        <p id="printComents"></p>
         <p id="printDate"></p>
     </div>
     <script src="./resultados.js"></script>

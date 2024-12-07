@@ -27,17 +27,21 @@ const fecha = document.getElementById("fecha");
 const simpleData = document.getElementById('finalData');
 
 const secLog = document.getElementById("historico");
+const secCom = document.getElementById('txtAdd');
 
 const printQuest = document.getElementById('printQuest');
 const printOpt = document.getElementById('printOpt');
 const printLog = document.getElementById('printLog');
 const printDate = document.getElementById('printDate');
+const printCom =  document.getElementById('printComents');
+const printCanvas = document.getElementById('printCanvas');
 
 const btnPrint = document.getElementById('btnImprimir');
 
 let resultados = [];
 let historial = [];
 let preguntas = ['',[]];
+let resultadosRecived = false;
 
 function setTime(){
     const date = new Date();
@@ -48,7 +52,7 @@ function setTime(){
     const hours = date.getHours();
     const minutes = date.getMinutes();
 
-    const fecha = `Votación realizada el ${dia}-${mes}-${year} a las ${hours}:${minutes}`;
+    const fecha = `<i>Votación realizada el ${dia}-${mes}-${year} a las ${hours}:${minutes}<i>`;
 
     return fecha;
 };
@@ -195,7 +199,8 @@ function historialVotos(){
 /* Llamado de Resultados */
 
 btnData.addEventListener("click",()=>{
-    fetch('/resultados')
+    if(!resultadosRecived){
+        fetch('/resultados')
         .then(response => response.json())
         .then(data => {
             resultados = data.rta;
@@ -208,10 +213,14 @@ btnData.addEventListener("click",()=>{
             drawGraficoBarra();
 
             fecha.innerText = setTime()
+            btnData.innerText = "Recargar"
         })
         .catch(error => {
             console.error('Error al obtener la IP:', error);
         });
+    }else{
+        location.reload();
+    }
 });
 
 btnGrap.addEventListener('click',()=>{
@@ -225,8 +234,20 @@ btnGrap.addEventListener('click',()=>{
 })
 
 btnPrint.addEventListener('click',()=>{
-    printDate.innerText = setTime();
+    printDate.innerHTML = setTime();
     printQuest.innerText = preguntas[0];
+
+    printCom.innerText = secCom.value;
+
+    const printCPolar = canvasPolar;
+        printCPolar.classList.remove('hide');
+    const printCBar = canvasBar;
+        printCBar.classList.remove('hide');
+
+    printCanvas.replaceChildren();
+
+    printCanvas.appendChild(printCPolar);
+    printCanvas.appendChild(printCBar);
 
     printOpt.replaceChildren();
     printLog.replaceChildren();

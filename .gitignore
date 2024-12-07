@@ -5,6 +5,7 @@ Thumbs.db
 # Ignorar directorios de dependencias
 node_modules/
 /packages
+icons/
 
 # Ignorar archivos compilados
 *.o
