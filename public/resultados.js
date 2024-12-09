@@ -6,8 +6,6 @@
         document.body.appendChild(div);
         alert("No tiene permiso para ingresar");
         location.href = "index.html";
-    }else{
-        sessionStorage.removeItem("name")
     }
 })();
 
@@ -52,7 +50,7 @@ function setTime(){
     const hours = date.getHours();
     const minutes = date.getMinutes();
 
-    const fecha = `<i>Votación realizada el ${dia}-${mes}-${year} a las ${hours}:${minutes}<i>`;
+    const fecha = `<i>Votación realizada el ${dia}-${mes}-${year} a las ${hours}:${minutes}</i>`;
 
     return fecha;
 };
@@ -212,8 +210,9 @@ btnData.addEventListener("click",()=>{
             drawGraficoPolar();
             drawGraficoBarra();
 
-            fecha.innerText = setTime()
-            btnData.innerText = "Recargar"
+            fecha.innerHTML = setTime();
+            btnData.innerText = "Recargar";
+            resultadosRecived = true;
         })
         .catch(error => {
             console.error('Error al obtener la IP:', error);
